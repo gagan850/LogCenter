@@ -1,0 +1,82 @@
+<template>
+
+    <c-log-center-error has-errors={hasErrors} errors={errors}></c-log-center-error>
+
+    <!-- Collapsible Filter Section -->
+    <div class="slds-box slds-theme_default slds-p-around_small slds-m-bottom_small">
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <h2 class="slds-text-heading_small slds-m-vertical_none">Filters</h2>
+            <lightning-button-icon icon-name={filterIcon}
+                                   alternative-text="Toggle Filters"
+                                   onclick={toggleFilters}
+                                   class="slds-button_icon slds-button_icon-border-filled slds-m-left_x-small">
+            </lightning-button-icon>
+        </div>
+
+        <!-- Filters (Collapsible) -->
+        <template if:false={collapseFilters}>
+            <div class="slds-grid slds-wrap slds-gutters_x-small">
+                <!-- Date Pickers Section with Border -->
+                <div class="date-picker-container slds-col slds-size_4-of-9" style="position: relative; border: 1px solid #D3D3D3; border-radius: 0.25rem; padding: 1rem; margin: 2%;">
+                    <div class="dates-label" style="position: absolute; top: -0.6rem; left: 1rem; background: white; padding: 0 0.5rem; color: #333;">Dates</div>
+                    <div class="slds-grid slds-wrap slds-gutters_x-small">
+                        <div class="slds-col slds-size_2-of-5">
+                        
+                                <lightning-combobox
+            value={selectedRelativeDateTime}
+            options={relativeDateTime}
+            onchange={handleRelativeDateTimeChange}>
+        </lightning-combobox></div>
+                        <div class="slds-col slds-size_3-of-5">
+                            <lightning-input if:true={customDateTimeRange} type="datetime-local" 
+                                             onchange={handleInputChange}
+                                             value={startDateTime}
+                                             data-id="startDateTime"
+                                             class="slds-input_small">
+                            </lightning-input>
+                                                        <lightning-input if:true={customDateTimeRange} type="datetime-local" 
+                                             onchange={handleInputChange}
+                                             value={endDateTime}
+                                             data-id="endDateTime"
+                                             class="slds-input_small">
+                            </lightning-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="date-picker-container slds-col slds-size_4-of-9" style="position: relative; border: 1px solid #D3D3D3; border-radius: 0.25rem; padding: 1rem; margin: 2%;">
+                    <div class="dates-label" style="position: absolute; top: -0.6rem; left: 1rem; background: white; padding: 0 0.5rem; color: #333;">Logging Level</div>
+                    <div class="slds-grid slds-wrap slds-gutters_x-small">
+                        <div class="slds-col slds-size_2-of-2 slds-grid slds-align_absolute-center">
+                            <lightning-input type="checkbox" label="Fine" checked={logLevel.fine}  onchange={handleInputChange} data-id="fine"></lightning-input>
+                            <lightning-input type="checkbox" label="Debug" checked={logLevel.debug} onchange={handleInputChange} data-id="debug"></lightning-input>
+                            <lightning-input type="checkbox" label="Info" checked={logLevel.info} onchange={handleInputChange} data-id="info"></lightning-input>
+                            <lightning-input type="checkbox" label="Warn" checked={logLevel.warn} onchange={handleInputChange} data-id="warn"></lightning-input>
+                            <lightning-input type="checkbox" label="Error" checked={logLevel.error} onchange={handleInputChange} data-id="error"></lightning-input>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Lookup Section -->
+                <div class="slds-size_1-of-9 slds-grid slds-wrap slds-gutters_x-small slds-m-bottom_x-small"  style="position: relative; border: 1px solid #D3D3D3; border-radius: 0.25rem; padding: 1rem; margin: 2%;">
+                    <div class="dates-label" style="position: absolute; top: -0.6rem; left: 1rem; background: white; padding: 0 0.5rem; color: #333;">User Detail</div>
+
+                        <div class="slds-size_1-of-1 slds-grid slds-align_right slds-gutters_x-small">
+                            <c-lk_custom-lookup icon-name="standard:party_profile" s-object-api-name="Profile" label="" placeholder="Search Profile" data-id="profileId" class="slds-input_small slds-col" onlookupupdate={handleInputChange}></c-lk_custom-lookup>
+                            <c-lk_custom-lookup icon-name="standard:user" s-object-api-name="User" label="" placeholder="Search User" data-id="userId" class="slds-input_small slds-col" onlookupupdate={handleInputChange}></c-lk_custom-lookup>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Button, Centered -->
+            <div class="slds-align_absolute-center slds-m-top_x-small">
+                <lightning-button label="Search"
+                                  variant="brand"
+                                disabled={hasErrors}
+                                   style="width: 5rem;"
+                                  onclick={handleFiltersChange}>
+                </lightning-button>
+            </div>
+        </template>
+    </div>
+</template>

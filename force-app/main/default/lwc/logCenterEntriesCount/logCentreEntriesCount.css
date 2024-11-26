@@ -1,0 +1,42 @@
+/* Main container for the log level boxes */
+.log-level-container {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Individual log level box */
+.log-level-box {
+    flex: 1; /* Each box fills available space equally */
+    max-width: 12rem; /* Max width for larger displays */
+    min-width: 60px; /* Minimum width to prevent overcrowding */
+    padding: 0.6rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.log-level-box:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+/* Entry count styling */
+.entry-count {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+/* Log level label styling */
+.label-text {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+}

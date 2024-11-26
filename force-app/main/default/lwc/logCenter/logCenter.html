@@ -1,0 +1,89 @@
+<template>
+    <!-- Filter Section -->
+    <c-log-center-filter onfilterchange={handleFilterChange}></c-log-center-filter>
+
+    <!-- Loading State -->
+    <template if:true={isLoading}>
+        <div class="spinner-overlay" aria-live="polite">
+            <div class="spinner-container">
+                <img src={spinnerIcon} alt="Brand Icon" class="brand-icon" />
+                <p class="loading-message">Hold tight...</p>
+            </div>
+        </div>
+    </template>
+
+    <!-- Table Section -->
+    <lightning-card if:false={isLoading} class="slds-m-top_small">
+        <c-log-center-entries-count if:true={searchResults} log-entries-count={logLevelEntries}></c-log-center-entries-count>
+        <c-log-center-local-search search-metadata={searchMetadata} onlocalsearch={handleLocalSearch}></c-log-center-local-search>
+
+        <div class="table-container">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <template for:each={columns} for:item="column">
+                            <th scope="col" key={column.fieldName} style={column.style}>{column.label}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={searchResults} for:item="row">
+                        <tr key={row.id} data-id={row.id} class={row.rowColor}  onclick={handleRowClick}>
+                            <td title={row.dateTime}>{row.dateTime}</td>
+                            <td title={row.user}>{row.user}</td>
+                            <td title={row.feature}>{row.feature}</td>
+                            <td title={row.component}>{row.component}</td>
+                            <td title={row.level}>{row.level}</td>
+                            <td>
+                                <div class="message-cell">
+                                    <span class="truncated-message">{row.message}</span>
+                                    <div class="action-icons">
+                                        <!--<lightning-button-icon icon-name="utility:expand_alt" 
+                                                            alternative-text="Expand" 
+                                                            onclick={toggleExpand} 
+                                                            data-id={row.id}>
+                                        </lightning-button-icon>-->
+                                        <lightning-button-icon icon-name="utility:copy" 
+                                                            alternative-text="Copy" 
+                                                            onclick={copyToClipboard} 
+                                                            data-id={row.id}>
+                                        </lightning-button-icon>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <template if:true={row.showDetails}>
+                            <tr class="log-details-row" key={row.id} data-id={row.id}>
+                                <td colspan={columns.length}>
+                                    <div class="log-details-container">
+                                        <pre class="log-content">
+                                            {row.message}
+                                        </pre>
+                                        <div class="log-actions">
+                                            <lightning-button-icon icon-name="utility:alert" alternative-text="Add Alert" onclick={addAlert}></lightning-button-icon>
+                                            <lightning-button-icon icon-name="utility:copy" alternative-text="Copy" onclick={copyToClipboard}></lightning-button-icon>
+                                            <lightning-button-icon icon-name="utility:share" alternative-text="Share" onclick={shareLog}></lightning-button-icon>
+
+                                            <!-- Custom button with custom icon for Assign Tag -->
+                                            <button class="action-button slds-button slds-button_icon slds-button_icon-border" onclick={assignTags}>
+                                                <img src={tagIconUrl} alt="Assign Tag"/>
+                                                <span class="slds-assistive-text">Assign Tag</span>
+                                            </button>
+
+                                            <!-- Custom button with custom icon for Beautify -->
+                                            <button class="action-button slds-button slds-button_icon slds-button_icon-border" onclick={beautifyJson}>
+                                                <img src={beautifyIconUrl} alt="Beautify"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+                    <!-- Expandable Details -->
+
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>

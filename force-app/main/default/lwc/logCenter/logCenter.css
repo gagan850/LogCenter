@@ -1,0 +1,237 @@
+.spinner-container {
+    width: 90%; /* Adjust size for smaller screens */
+    max-width: 400px;
+    text-align: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.brand-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.loading-message {
+    font-size: 1rem;
+    color: #4b4b4b;
+    margin-top: 0.5rem;
+}
+
+.table-container {
+    max-height: 80vh; /* Adjust height as needed */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    border: 1px solid #ddd;
+    overflow-x: hidden;
+    width: 99%;
+    margin: 0.5%;
+}
+
+table {
+    table-layout: fixed;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+th {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  
+    /* Make header sticky */
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1; /* Adjust header background */
+    z-index: 1; /* Keep header on top of content */
+    white-space: break-spaces;
+}
+
+
+@media (max-width: 768px) {
+    .table-container {
+        max-height: 60vh; /* Reduce height on smaller devices */
+        overflow-y: auto;
+    }
+
+    table {
+        font-size: 0.9rem; /* Reduce font size */
+    }
+}
+
+
+
+.slds-m-top_small {
+    margin-top: 0.5rem; /* Smaller top margin */
+}
+
+@media (max-width: 768px) {
+    .slds-m-top_small {
+        margin-top: 0.25rem; /* Adjust margin for smaller devices */
+    }
+}
+
+.error-bg-color {
+    background-color: #FFCDD2!important;
+}
+
+.warn-bg-color {
+    background-color: #FFE0B2!important;
+}
+
+/* Expandable row styling */
+.log-details-row {
+    background-color: #f4f6f9; /* Light background for details */
+}
+
+.log-details-container {
+    padding: 10px;
+    border-left: 4px solid #0070d2; /* Salesforce blue accent */
+    background-color: #ffffff; /* White container for details */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 100%;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.log-content {
+    font-family: monospace;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    white-space: break-spaces;
+    word-break: normal;
+}
+
+.log-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.log-actions lightning-button-icon {
+    cursor: pointer;
+    background-color: #f4f6f9;
+    transition: background-color 0.3s ease;
+}
+
+.log-actions lightning-button-icon:hover {
+    background-color: #0070d2;
+    color: #ffffff;
+}
+
+.log-details-row {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
+}
+
+.log-details-container {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.truncated-message {
+    flex: 1; /* Take up the remaining space */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.action-icons {
+    display: flex;
+    gap: 5px;
+}
+
+.action-icons lightning-button-icon {
+    cursor: pointer;
+    background-color: #f4f6f9;
+    transition: background-color 0.3s ease;
+}
+
+.action-icons lightning-button-icon:hover {
+    background-color: #0070d2;
+    color: #ffffff;
+}
+
+.copied-notification {
+    position: absolute;
+    background: #28a745; /* Green background */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 100; /* Bring to front */
+    transform: translate(-50%, -150%); /* Adjust position relative to button */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.copied-notification.visible {
+    opacity: 1;
+}
+
+/* Custom buttons to match lightning-button-icon */
+.action-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f6f9; /* Light background like the button icon */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box; /* Ensures padding is included in the size */
+}
+
+.action-button:hover {
+    background-color: #0070d2; /* Same hover color as lightning button icon */
+    color: white;
+    transform: scale(1.1); /* Slight scale effect on hover */
+}
+
+/* For the icon inside the button */
+.action-button img {
+    width: 0.875rem; /* Same size for icons */
+    height: 0.875rem;
+}

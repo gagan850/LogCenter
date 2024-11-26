@@ -1,0 +1,17 @@
+<template>
+    <!-- Main container for the log level boxes -->
+    <div class="log-level-container slds-grid slds-wrap">
+        <template for:each={logEntriesCount} for:item="logLevel">
+            <div key={logLevel.label} class="log-level-box" style={logLevel.colorStyle}>
+                <!-- Entry count inside each box with formatted entries -->
+                <div class="entry-count">
+                    {logLevel.entries}
+                </div>
+                <!-- Label below each entry count -->
+                <div class="label-text">
+                    {logLevel.label}
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

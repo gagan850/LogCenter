@@ -1,0 +1,45 @@
+<template>
+    <div class="slds-theme_default slds-p-around_small slds-m-bottom_small">
+    <div class="slds-grid slds-wrap slds-gutters_x-small"     style="padding: 0.5rem;margin: 0.5rem;">
+        <!-- Search Input Column -->
+        <div class="slds-col slds-size_3-of-3 slds-p-around_small">
+            <div class="pill-container">
+                <template for:each={selectedPills} for:item="pill">
+                    <span key={pill} class="pill">
+                        {pill}
+                        <button class="close-btn" onclick={handleRemovePill} data-pill={pill} aria-label="Remove pill">X</button>
+                    </span>
+                </template>
+            </div>
+            <lightning-input 
+                value={query} 
+                onchange={handleInputChange} 
+                onkeydown={handleKeyDown} 
+                placeholder="Type @component, @user, etc.">
+            </lightning-input>
+
+            <!-- Category Suggestions List -->
+            <template if:true={isCategoryVisible}>
+                <ul class="suggestions-list">
+                    <template for:each={categories} for:item="category">
+                        <li key={category} data-category={category} onclick={handleCategorySelect}>
+                            {category}
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <!-- Values Suggestions List -->
+            <template if:true={isValueVisible}>
+                <ul class="suggestions-list">
+                    <template for:each={values} for:item="value">
+                        <li key={value} data-value={value} onclick={handleValueSelect}>
+                            {value}
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+    </div>
+    </div>
+</template>

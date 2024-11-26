@@ -1,0 +1,21 @@
+.slds-checkbox_group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start; /* Adjust alignment as necessary */
+}
+
+.slds-checkbox {
+    margin-right: 1rem; /* Space between checkboxes */
+}
+
+    /* Additional styling for the dates label */
+.dates-label {
+    position: absolute; 
+    top: -0.6rem; 
+    left: 1rem; 
+    background: white; /* Matches background to make it look like part of border */
+    padding: 0 0.5rem; /* Padding around the label for better visibility */
+    color: #333; /* Text color */
+    font-weight: bold; /* Optional: to make the label stand out */
+    font-size: 0.85rem; /* Optional: adjust font size */
+}
