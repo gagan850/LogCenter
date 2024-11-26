@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feature__c</fullName>
+    <description>It contains the feature accessed by the user</description>
+    <externalId>false</externalId>
+    <label>Feature</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Web Order</fullName>
+                <default>false</default>
+                <label>Web Order</label>
+            </value>
+            <value>
+                <fullName>Web Lead</fullName>
+                <default>false</default>
+                <label>Web Lead</label>
+            </value>
+            <value>
+                <fullName>Net Price Enhanced</fullName>
+                <default>false</default>
+                <label>Net Price Enhanced</label>
+            </value>
+            <value>
+                <fullName>ARC Tool</fullName>
+                <default>false</default>
+                <label>ARC Tool</label>
+            </value>
+            <value>
+                <fullName>Price Analysis Tool</fullName>
+                <default>false</default>
+                <label>Price Analysis Tool</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
